@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Berwick Capital</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #5F6D7A;
+        }
+        .banner {
+            background-color: #E3E7E8;
+            padding: 15px 25px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .banner h1 {
+            color: #5F6D7A;
+            margin: 0;
+        }
+        .banner p {
+            color: #D4B996;
+            font-size: 18px;
+            margin: 0;
+        }
+        .section-graphic {
+            background-color: #aa8a61;
+            height: 844;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .center-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8A735;
+            position: absolute;
+        }
+        .node {
+            position: absolute;
+            text-align: center;
+            font-size: 14px;
+        }
+        .node-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #72A6A1;
+        }
+        .node-desc {
+            color: #E27D60;
+        }
+        .lifecycle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 10px;
+            background-color: #E3E7E8;
+        }
+        .lifecycle-item {
+            display: flex;
+            align-items: center;
+        }
+        .lifecycle-item img {
+            width: 50px;
+            margin-right: 10px;
+            background: #E3E7E8;
+        }
+        .lifecycle-title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .lifecycle-bullets {
+            font-size: 18px;
+        }
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            padding: 20px 0;
+        }
+        .node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .node:hover, .node.active {
+            transform: scale(1.4);
+        }
+        .node img {
+            width: 60px;
+            height: 60px;
+        }
+        .node-text {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .content-panel {
+            width: 80%;
+            max-width: 800px;
+            background-color: #E3E7E8;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-align: left;
+        }
+        .content-panel h3 {
+            background-color: #72A6A1;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+        .content-panel ul {
+            padding-left: 20px;
+            text-align: left;
+            margin: 10px 0;
+        }
+        .content-panel.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .lbc-role {
+            background-color: #E3E7E8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: #5F6D7A;
+            font-weight: bold;
+        }
+        .lbc-role h3 {
+            background-color: #72A6A1;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Leo Berwick Capital</h1>
+        <p>Trust. Transparency. Faster Transactions.</p>
+    </div>
+    
+    <div class="section-graphic">
+        <!-- div class="center-text">Trust. Transparency. Faster Transactions.</div>
+            Nodes will be positioned here dynamically with absolute positioning in CSS -->
+        <img src="images\LBC Sections1 graphic.png" alt="One Stop Shop">
+    </div>
+    
+<div>
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="node" onclick="showContent(0)">
+                <img src="images/project_concept_icon.png" alt="Planning">
+                <div class="node-text">Planning</div>
+            </div>
+            <div class="node" onclick="showContent(1)">
+                <img src="images/development-permitting_icon.png" alt="Development & Permitting">
+                <div class="node-text">Development</div>
+            </div>
+            <div class="node" onclick="showContent(2)">
+                <img src="images/epc_icon.png" alt="EPC">
+                <div class="node-text">EPC</div>
+            </div>
+            <div class="node" onclick="showContent(3)">
+                <img src="images/monitization-insurance_icon.png" alt="Monetization">
+                <div class="node-text">Monetization</div>
+            </div>
+            <div class="node" onclick="showContent(4)">
+                <img src="images/windmill_icon.png" alt="Operations & Maintenance">
+                <div class="node-text">O&M</div>
+            </div>
+            <div class="node" onclick="showContent(5)">
+                <img src="images/compliance_icon.png" alt="Annual Compliance">
+                <div class="node-text">Compliance</div>
+            </div>
+        </div>
+        <div id="content" class="content-panel active"></div>
+    </div>
+    <script>
+        const contents = [
+            `<h3>Project Concept, Ideation & Planning</h3>
+            <ul>
+                <li><strong>Market & Site Selection:</strong> Identify a viable location based on resource availability (solar, wind, etc.), grid access, land use regulations, and incentives.</li>
+                <li><strong>Feasibility Study:</strong> Assess technical, environmental, and financial feasibility, including expected energy yield, permitting constraints, and interconnection options.</li>
+                <li><strong>Stakeholder Engagement:</strong> Engage with landowners, community groups, regulators, and utilities to address potential concerns and secure agreements.</li>
+                <li><strong>Preliminary Financial Modeling:</strong> Develop initial project cost estimates, expected revenues, and financing strategies.</li>
+            </ul>
+                <div class="lbc-role">
+                    <h3>LBC will help you ...</h3>
+                    <ul>
+                        <li>Identify and implement cashflow improvement opportunities through a full suite of tax services offered by complex industrial property tax experts. <p>Learn more: <a href="https://www.leoberwick.com/services/property-tax-services/">Property Tax Services</a></p></li>
+                    </ul>        
+                </div>`,
+            `<h3>Development & Permitting</h3>
+            <ul>
+                <li><strong>Land Acquisition & Leasing:</strong> Secure site control via purchase, lease, or easements.</li>
+                <li><strong>Environmental & Regulatory Approvals:</strong> Conduct impact studies, obtain necessary permits.</li>
+                <li><strong>Interconnection Studies & Agreements:</strong> Work with the utility or transmission operator to connect the project to the grid.</li>
+                <li><strong>Power Purchase Agreement:</strong> Secure long-term revenue through contracts.</li>
+                <li><strong>Final Financial Structuring:</strong> Secure financing, including equity, debt, and tax equity investors.</li>
+            </ul>
+            <div class="lbc-role">
+                    <h3>LBC will help you ...</h3>
+                    <ul>
+                        <li>Identify and implement cashflow improvement opportunities through a full suite of tax services offered by complex industrial property tax experts. <p>Learn more: <a href="https://www.leoberwick.com/services/property-tax-services/">Property Tax Services</a></p></li>
+                    </ul>        
+                    
+            </div>`,
+            `<h3>Engineering, Procurement & Construction (EPC)</h3>
+
+            <ul>
+            <li>Final Engineering Design & Procurement: Select and order equipment.</li>
+            <li>Construction Permits & Compliance: Ensure all legal and environmental permits are in place.</li>
+            <li>Project Insurance: Secure builder's risk and other required policies.</li>
+            <li>Construction Execution: Manage project timelines and quality control.</li>
+            <li>Commissioning & Grid Interconnection: Complete testing and approvals.</li>
+          </ul>
+                      <div class="lbc-role">
+                    <h3>LBC will help you ...</h3>
+                    <ul>
+                        <li>Identify and implement cashflow improvement opportunities through a full suite of tax services offered by complex industrial property tax experts. <p>Learn more: <a href="https://www.leoberwick.com/services/property-tax-services/">Property Tax Services</a></p></li>
+                    </ul>        
+                    
+            </div>`,
+          `<h3>Monetization of Tax Credits & Insurance</h3>
+            <ul>
+              <li>Eligibility Confirmation: Validate incentive eligibility.</li>
+              <li>Tax Equity Investment: Finalize financing structure.</li>
+              <li>Monetization of Tax Credits: Realize cash from tax equity investors.</li>
+              <li>Insurance for Tax Equity Investors: Protect against recapture and audit risk.</li>
+              <li>Recapture Risk Management: Maintain compliance for credit retention.</li>
+            </ul>
+                      <div class="lbc-role">
+                    <h3>LBC will help you ...</h3>
+                    <ul>
+                        <li>Identify and implement cashflow improvement opportunities through a full suite of tax services offered by complex industrial property tax experts. <p>Learn more: <a href="https://www.leoberwick.com/services/property-tax-services/">Property Tax Services</a></p></li>
+                    </ul>        
+                    
+            </div>`,
+            `<h3>Operations & Maintenance</h3>
+            <ul>
+              <li>Asset Management: Monitor and optimize output.</li>
+              <li>O&M Contracts: Maintain and service equipment.</li>
+              <li>Regulatory Compliance: Fulfill legal obligations.</li>
+              <li>Tax & Financial Reporting: Handle ongoing filings and disclosures.</li>
+            </ul>
+                      <div class="lbc-role">
+                    <h3>LBC will help you ...</h3>
+                    <ul>
+                        <li>Identify and implement cashflow improvement opportunities through a full suite of tax services offered by complex industrial property tax experts. <p>Learn more: <a href="https://www.leoberwick.com/services/property-tax-services/">Property Tax Services</a></p></li>
+                    </ul>        
+                    
+            </div>`,
+            `<h3>Annual Compliance & Long-term Obligations</h3>
+            <ul>
+              <li>Regulatory Reporting: Submit required reports and documentation.</li>
+              <li>Tax Credit Compliance: Maintain operational eligibility.</li>
+              <li>Community & Landowner Obligations: Fulfill commitments and agreements.</li>
+              <li>End-of-Life & Decommissioning Planning: Prepare for asset retirement or repowering.</li>
+            </ul>
+                      <div class="lbc-role">
+                    <h3>LBC will help you ...</h3>
+                    <ul>
+                        <li>Identify and implement cashflow improvement opportunities through a full suite of tax services offered by complex industrial property tax experts. <p>Learn more: <a href="https://www.leoberwick.com/services/property-tax-services/">Property Tax Services</a></p></li>
+                    </ul>        
+                    
+            </div>`,
+        ];
+
+        function showContent(index) {
+    // Remove 'active' from all nodes
+    document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+
+    // Add 'active' to the clicked node
+    document.querySelectorAll('.node')[index].classList.add('active');
+
+    const panel = document.getElementById("content");
+    panel.classList.remove("active");
+
+    setTimeout(() => {
+        panel.innerHTML = contents[index];
+        panel.classList.add("active");
+    }, 300);
+}
+
+
+        showContent(0);
+    </script>
+</div>
+</body>
+</html>
+
